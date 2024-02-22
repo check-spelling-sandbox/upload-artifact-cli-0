@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  create:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,4 +38,24 @@ jobs:
           cat file
           rm -f file
           gh -R "$GITHUB_REPOSITORY" run download -n test
+          cat file
+
+  retrieve:
+    runs-on: ubuntu-latest
+    needs: create
+
+    steps:
+      - name: retrieve artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: test
+      
+      - name: Review
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat file
+          rm -f file
+          gh -R "$GITHUB_REPOSITORY" run download -n test
           find .
+          cat file
