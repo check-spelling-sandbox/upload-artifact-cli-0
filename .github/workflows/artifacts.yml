@@ -39,7 +39,7 @@ jobs:
         run: |
           cat file
           rm -f file
-          gh -R "$GITHUB_REPOSITORY" run download -n test
+          gh -R "$GITHUB_REPOSITORY" run download "$GITHUB_RUN_ID" -n test
           cat file
 
   retrieve:
@@ -58,6 +58,6 @@ jobs:
         run: |
           cat file
           rm -f file
-          gh -R "$GITHUB_REPOSITORY" run download -n test
+          gh -R "$GITHUB_REPOSITORY" run download "$GITHUB_RUN_ID" -n test
           find .
           cat file
