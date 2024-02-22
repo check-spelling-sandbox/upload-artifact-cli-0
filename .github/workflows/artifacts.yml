@@ -16,6 +16,8 @@ jobs:
           hello
           world
           EOF
+          date >> file
+
       - name: upload
         uses: actions/upload-artifact@v3
         with:
