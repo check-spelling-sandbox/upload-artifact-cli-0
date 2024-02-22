@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: create file
+        run: |
+          cat > file <<EOF
+          hello
+          world
+          EOF
+      - name: upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: test
+          path: file
+
+      - name: Cleanup
+        run: |
+          rm -f file
+
+      - name: retrieve artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: test
+          path: file
+      
+      - name: Review
+        run: |
+          cat file
+
