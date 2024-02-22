@@ -61,6 +61,4 @@ jobs:
           rm -f file
           gh -R "$GITHUB_REPOSITORY" run download "$GITHUB_RUN_ID" -n test
           find .
-          gh -R "$GITHUB_REPOSITORY" run download "$GITHUB_RUN_ID" -n test &&
-            cat file ||
-            echo "I guess gh can't download artifacts from the current run if they're uploaded with actions/upload-artifact@v3"
+          cat file
