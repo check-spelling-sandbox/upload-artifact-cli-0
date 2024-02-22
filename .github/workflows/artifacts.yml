@@ -32,5 +32,10 @@ jobs:
           name: test
       
       - name: Review
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           cat file
+          rm -f file
+          gh run download -n test
+          find .
